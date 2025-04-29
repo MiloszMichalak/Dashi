@@ -3,6 +3,9 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.google.gms.google.services)
+    kotlin("plugin.serialization") version "2.1.20"
+    id("com.google.devtools.ksp")
+    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -44,13 +47,17 @@ dependencies {
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
-    implementation(libs.androidx.activity.compose)
-    implementation(platform(libs.androidx.compose.bom))
-    implementation(libs.androidx.ui)
-    implementation(libs.androidx.ui.graphics)
-    implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
-    implementation(libs.firebase.auth)
+    implementation(libs.bundles.compose)
+    implementation(platform(libs.androidx.compose.bom))
+    
+    implementation(libs.bundles.androidxUi)
+    implementation(libs.bundles.firebase)
+    implementation(libs.kotlinx.serialization.json)
+
+    implementation(libs.bundles.hilt)
+    ksp(libs.hilt.android.compiler)
+    
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
