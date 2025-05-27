@@ -1,7 +1,6 @@
 package com.menene.dashi.navigation.ui.screens
 
 import androidx.compose.foundation.ExperimentalFoundationApi
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -9,7 +8,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.onClick
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -17,10 +15,13 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavController
 import androidx.navigation.NavHostController
-import com.menene.dashi.navigation.Screen
-import com.menene.dashi.ui.theme.DashiTheme
+import com.menene.dashi.components.EmailTextField
+import com.menene.dashi.components.PasswordTextField
+import com.menene.dashi.presentation.navigation.Screen
+import com.menene.dashi.presentation.theme.DashiTheme
+import dashi.composeapp.generated.resources.Res
+import dashi.composeapp.generated.resources.confirm_password
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
@@ -46,26 +47,26 @@ fun RegisterScreen(navController: NavHostController) {
                 Column(
                     verticalArrangement = Arrangement.spacedBy(10.dp)
                 ) {
-                    OutlinedTextField(
-                        value = email.value,
-                        onValueChange = {
+                    EmailTextField(
+                        email = email.value,
+                        onEmailChange = {
                             email.value = it
                         }
                     )
-                    OutlinedTextField(
-                        value = password.value,
-                        onValueChange = {
+                    PasswordTextField(
+                        password = password.value,
+                        onPasswordChange = {
                             password.value = it
                         }
                     )
+                    PasswordTextField(
+                        password = confirmPassword.value,
+                        onPasswordChange = {
+                            confirmPassword.value = it
+                        },
+                        placeholder = Res.string.confirm_password
+                    )
                 }
-                OutlinedTextField(
-                    value = confirmPassword.value,
-                    onValueChange = {
-                        confirmPassword.value = it
-                    },
-                    label = { Text("Confirm Password") }
-                )
 
                 Button(
                     onClick = {},
@@ -75,7 +76,7 @@ fun RegisterScreen(navController: NavHostController) {
                 Text(text = "login",
                     modifier = Modifier.onClick(
                         onClick = {
-                            navController.navigate(Screen.Login) // Navigate to login screen
+                            navController.navigate(Screen.Login)
                         }
                     ))
             }

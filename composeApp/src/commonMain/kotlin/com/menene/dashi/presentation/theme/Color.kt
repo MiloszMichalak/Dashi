@@ -1,4 +1,4 @@
-package com.menene.dashi.ui.theme
+package com.menene.dashi.presentation.theme
 import androidx.compose.ui.graphics.Color
 
 val primaryLight = Color(0xFF4C662B)

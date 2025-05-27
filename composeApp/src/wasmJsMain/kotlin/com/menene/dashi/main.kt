@@ -4,8 +4,7 @@ import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.window.ComposeViewport
 import androidx.navigation.ExperimentalBrowserHistoryApi
 import androidx.navigation.bindToNavigation
-import com.menene.dashi.navigation.NavGraph
-import com.menene.dashi.navigation.ui.screens.LoginScreen
+import com.menene.dashi.presentation.navigation.NavGraph
 import kotlinx.browser.document
 import kotlinx.browser.window
 

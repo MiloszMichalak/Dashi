@@ -1,4 +1,4 @@
-package com.menene.dashi.ui.theme
+package com.menene.dashi.presentation.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle

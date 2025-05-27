@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.onClick
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -16,10 +15,11 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavController
 import androidx.navigation.NavHostController
-import com.menene.dashi.navigation.Screen
-import com.menene.dashi.ui.theme.DashiTheme
+import com.menene.dashi.components.EmailTextField
+import com.menene.dashi.components.PasswordTextField
+import com.menene.dashi.presentation.navigation.Screen
+import com.menene.dashi.presentation.theme.DashiTheme
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @OptIn(ExperimentalFoundationApi::class)
@@ -46,15 +46,15 @@ fun LoginScreen(navController: NavHostController) {
                 Column(
                     verticalArrangement = Arrangement.spacedBy(10.dp)
                 ) {
-                    OutlinedTextField(
-                        value = email.value,
-                        onValueChange = {
+                    EmailTextField(
+                        email = email.value,
+                        onEmailChange = {
                             email.value = it
                         }
                     )
-                    OutlinedTextField(
-                        value = password.value,
-                        onValueChange = {
+                    PasswordTextField(
+                        password = password.value,
+                        onPasswordChange = {
                             password.value = it
                         }
                     )

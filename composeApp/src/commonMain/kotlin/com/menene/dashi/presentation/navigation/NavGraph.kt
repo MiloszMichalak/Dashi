@@ -1,4 +1,4 @@
-package com.menene.dashi.navigation
+package com.menene.dashi.presentation.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
