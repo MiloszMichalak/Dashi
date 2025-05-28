@@ -1,4 +1,4 @@
-package com.menene.dashi.navigation.ui.screens
+package com.menene.dashi.presentation
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Arrangement
@@ -16,8 +16,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
-import com.menene.dashi.components.EmailTextField
-import com.menene.dashi.components.PasswordTextField
+import com.menene.dashi.presentation.components.EmailTextField
+import com.menene.dashi.presentation.components.PasswordTextField
+import com.menene.dashi.presentation.components.ShadowColumn
 import com.menene.dashi.presentation.navigation.Screen
 import com.menene.dashi.presentation.theme.DashiTheme
 import dashi.composeapp.generated.resources.Res
@@ -25,60 +26,65 @@ import dashi.composeapp.generated.resources.confirm_password
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun RegisterScreen(navController: NavHostController) {
+fun RegisterScreen(
+    navController: NavHostController,
+    authViewModel: AuthViewModel
+) {
     DashiTheme {
         Scaffold { innerPadding ->
             Column(
                 modifier = Modifier
                     .padding(innerPadding)
                     .fillMaxSize(),
-                horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.Center
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 val email = mutableStateOf("")
                 val password = mutableStateOf("")
                 val confirmPassword = mutableStateOf("")
 
-                Text(
-                    text = "Dashi",
-                    style = MaterialTheme.typography.headlineLarge
-                )
+                ShadowColumn{
+                    Text(
+                        text = "Dashi",
+                        style = MaterialTheme.typography.headlineLarge
+                    )
 
-                Column(
-                    verticalArrangement = Arrangement.spacedBy(10.dp)
-                ) {
-                    EmailTextField(
-                        email = email.value,
-                        onEmailChange = {
-                            email.value = it
-                        }
-                    )
-                    PasswordTextField(
-                        password = password.value,
-                        onPasswordChange = {
-                            password.value = it
-                        }
-                    )
-                    PasswordTextField(
-                        password = confirmPassword.value,
-                        onPasswordChange = {
-                            confirmPassword.value = it
-                        },
-                        placeholder = Res.string.confirm_password
-                    )
-                }
+                    Column(
+                        verticalArrangement = Arrangement.spacedBy(10.dp)
+                    ) {
+                        EmailTextField(
+                            email = email.value,
+                            onEmailChange = {
+                                email.value = it
+                            }
+                        )
+                        PasswordTextField(
+                            password = password.value,
+                            onPasswordChange = {
+                                password.value = it
+                            }
+                        )
+                        PasswordTextField(
+                            password = confirmPassword.value,
+                            onPasswordChange = {
+                                confirmPassword.value = it
+                            },
+                            placeholder = Res.string.confirm_password
+                        )
+                    }
 
-                Button(
-                    onClick = {},
-                ) {
-                    Text(text = "register")
+                    Button(
+                        onClick = {},
+                    ) {
+                        Text(text = "register")
+                    }
+                    Text(text = "login",
+                        modifier = Modifier.onClick(
+                            onClick = {
+                                navController.navigate(Screen.Login)
+                            }
+                        ))
                 }
-                Text(text = "login",
-                    modifier = Modifier.onClick(
-                        onClick = {
-                            navController.navigate(Screen.Login)
-                        }
-                    ))
             }
         }
     }

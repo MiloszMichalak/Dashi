@@ -7,6 +7,7 @@ plugins {
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
     alias(libs.plugins.composeHotReload)
+//    id("com.google.gms.google-services")
     kotlin("plugin.serialization") version "2.1.21"
 }
 
@@ -47,6 +48,7 @@ kotlin {
             implementation(libs.bundles.androidx.lifecycle)
             implementation(libs.serialization.json)
             implementation(libs.navigation.compose)
+//            implementation(libs.)
 
         }
         commonTest.dependencies {

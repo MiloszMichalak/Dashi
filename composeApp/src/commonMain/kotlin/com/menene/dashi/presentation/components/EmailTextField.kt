@@ -1,4 +1,4 @@
-package com.menene.dashi.components
+package com.menene.dashi.presentation.components
 
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.OutlinedTextField
@@ -7,24 +7,21 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import dashi.composeapp.generated.resources.Res
-import dashi.composeapp.generated.resources.password
-import org.jetbrains.compose.resources.StringResource
+import dashi.composeapp.generated.resources.email
 import org.jetbrains.compose.resources.stringResource
 
 @Composable
-fun PasswordTextField(
-    password: String,
-    onPasswordChange: (String) -> Unit,
-    placeholder: StringResource = Res.string.password
+fun EmailTextField(
+    email: String,
+    onEmailChange: (String) -> Unit,
 ) {
     OutlinedTextField(
-        value = password,
-        onValueChange = onPasswordChange,
-        placeholder = { Text(stringResource(placeholder)) },
+        value = email,
+        onValueChange = onEmailChange,
+        placeholder = { Text(stringResource(Res.string.email)) },
         keyboardOptions = KeyboardOptions.Default.copy(
-            autoCorrectEnabled = false,
+            keyboardType = KeyboardType.Email,
             imeAction = ImeAction.Next,
-            keyboardType = KeyboardType.Password
         ),
         singleLine = true
     )

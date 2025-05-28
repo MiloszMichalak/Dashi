@@ -1,4 +1,4 @@
-package com.menene.dashi.navigation.ui.screens
+package com.menene.dashi.presentation
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Arrangement
@@ -16,8 +16,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
-import com.menene.dashi.components.EmailTextField
-import com.menene.dashi.components.PasswordTextField
+import com.menene.dashi.presentation.components.EmailTextField
+import com.menene.dashi.presentation.components.PasswordTextField
+import com.menene.dashi.presentation.components.ShadowColumn
 import com.menene.dashi.presentation.navigation.Screen
 import com.menene.dashi.presentation.theme.DashiTheme
 import org.jetbrains.compose.ui.tooling.preview.Preview
@@ -25,7 +26,10 @@ import org.jetbrains.compose.ui.tooling.preview.Preview
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 @Preview
-fun LoginScreen(navController: NavHostController) {
+fun LoginScreen(
+    navController: NavHostController,
+    viewModel: AuthViewModel
+    ) {
     DashiTheme {
         Scaffold { innerPadding ->
             Column(
@@ -38,39 +42,42 @@ fun LoginScreen(navController: NavHostController) {
                 val email = mutableStateOf("")
                 val password = mutableStateOf("")
 
-                Text(
-                    text = "Dashi",
-                    style = MaterialTheme.typography.headlineLarge
-                )
 
-                Column(
-                    verticalArrangement = Arrangement.spacedBy(10.dp)
-                ) {
-                    EmailTextField(
-                        email = email.value,
-                        onEmailChange = {
-                            email.value = it
-                        }
+                ShadowColumn {
+                    Text(
+                        text = "Dashi",
+                        style = MaterialTheme.typography.headlineLarge
                     )
-                    PasswordTextField(
-                        password = password.value,
-                        onPasswordChange = {
-                            password.value = it
-                        }
-                    )
-                }
 
-                Button(
-                    onClick = {},
-                ) {
-                    Text(text = "Login")
+                    Column(
+                        verticalArrangement = Arrangement.spacedBy(10.dp)
+                    ) {
+                        EmailTextField(
+                            email = email.value,
+                            onEmailChange = {
+                                email.value = it
+                            }
+                        )
+                        PasswordTextField(
+                            password = password.value,
+                            onPasswordChange = {
+                                password.value = it
+                            }
+                        )
+                    }
+
+                    Button(
+                        onClick = {},
+                    ) {
+                        Text(text = "Login")
+                    }
+                    Text(text = "register",
+                        modifier = Modifier.onClick(
+                            onClick = {
+                                navController.navigate(Screen.Register)
+                            }
+                        ))
                 }
-                Text(text = "register",
-                    modifier = Modifier.onClick(
-                        onClick = {
-                            navController.navigate(Screen.Register)
-                        }
-                    ))
             }
         }
     }
